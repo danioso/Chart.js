@@ -41,4 +41,4 @@ require('./charts/Chart.PolarArea')(Chart);
 require('./charts/Chart.Radar')(Chart);
 require('./charts/Chart.Scatter')(Chart);
 
-export default Chart
+module.exports = Chart
