@@ -622,6 +622,7 @@ module.exports = function(Chart) {
 	};
 	//Request animation polyfill - http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
 	helpers.requestAnimFrame = (function() {
+		if(typeof window === 'undefined') return function(callback){return callback()}
 		return window.requestAnimationFrame ||
 			window.webkitRequestAnimationFrame ||
 			window.mozRequestAnimationFrame ||
@@ -632,6 +633,7 @@ module.exports = function(Chart) {
 			};
 	})();
 	helpers.cancelAnimFrame = (function() {
+		if(typeof window === 'undefined') return function(callback){return callback()}
 		return window.cancelAnimationFrame ||
 			window.webkitCancelAnimationFrame ||
 			window.mozCancelAnimationFrame ||
