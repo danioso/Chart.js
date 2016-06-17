@@ -37,8 +37,8 @@ module.exports = function() {
 
 		// Store the original style of the element so we can set it back
 		if (typeof window === 'undefined') {
-			this.originalCanvasStyleWidth = canvas.width;
-			this.originalCanvasStyleHeight = canvas.height;
+			this.originalCanvasStyleWidth = context.canvas.width;
+			this.originalCanvasStyleHeight = context.canvas.height;
 		} else {
 			this.originalCanvasStyleWidth = context.canvas.style.width;
 			this.originalCanvasStyleHeight = context.canvas.style.height;
