@@ -36,9 +36,13 @@ module.exports = function() {
 		}
 
 		// Store the original style of the element so we can set it back
-		this.originalCanvasStyleWidth = context.canvas.style.width;
-		this.originalCanvasStyleHeight = context.canvas.style.height;
-
+		if (typeof window === 'undefined') {
+			this.originalCanvasStyleWidth = canvas.width;
+			this.originalCanvasStyleHeight = canvas.height;
+		} else {
+			this.originalCanvasStyleWidth = context.canvas.style.width;
+			this.originalCanvasStyleHeight = context.canvas.style.height;
+		}
 		// High pixel density displays - multiply the size of the canvas height/width by the device pixel ratio, then scale.
 		Chart.helpers.retinaScale(this);
 

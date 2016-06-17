@@ -796,8 +796,12 @@ module.exports = function(Chart) {
 		var canvas = chart.canvas;
 		var width = canvas.width;
 		var height = canvas.height;
-		var pixelRatio = chart.currentDevicePixelRatio = window.devicePixelRatio || 1;
 
+		if (typeof window === 'undefined') {
+			var pixelRatio = chart.currentDevicePixelRatio = 1;
+		} else {
+			var pixelRatio = chart.currentDevicePixelRatio = window.devicePixelRatio || 1;
+		}
 		if (pixelRatio !== 1) {
 			canvas.height = height * pixelRatio;
 			canvas.width = width * pixelRatio;
@@ -809,8 +813,11 @@ module.exports = function(Chart) {
 			chart.originalDevicePixelRatio = chart.originalDevicePixelRatio || pixelRatio;
 		}
 
+		if(canvas.style && canvas.style.width)
 		canvas.style.width = width + 'px';
-		canvas.style.height = height + 'px';
+
+		if(canvas.style && canvas.style.height)
+			canvas.style.height = height + 'px';
 	};
 	//-- Canvas methods
 	helpers.clear = function(chart) {
@@ -877,9 +884,9 @@ module.exports = function(Chart) {
 		}
 
 		/* global CanvasGradient */
-		if (c instanceof CanvasGradient) {
-			return color(Chart.defaults.global.defaultColor);
-		}
+		// if (c instanceof CanvasGradient) {
+		// 	return color(Chart.defaults.global.defaultColor);
+		// }
 
 		return color(c);
 	};
